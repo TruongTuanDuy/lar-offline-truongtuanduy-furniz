@@ -54,3 +54,12 @@ Route::get('/gioi-thieu', function () {
 Route::get('/404', function () {
     return view('furniz.templates.404');
 });
+
+Route::group([
+    'namespace' => 'App\Http\Controllers\Admin',
+    'prefix' => 'admin',
+    'as' => 'admin.'
+], function () {
+    Route::resource('collections', CollectionController::class)->parameters(['collections' => 'item']);
+    Route::resource('categoryArticles', CategoryArticleController::class)->parameters(['categoryArticles' => 'item']);
+});
